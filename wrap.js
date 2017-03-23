@@ -1,5 +1,6 @@
 # MyTest
 (function(){
+    //获取dom
     var div = document.getElementById('wrap');
     var wrap = document.getElementById('ul_wrap');
     var leftBtn = document.getElementById('wrap_left');
@@ -7,7 +8,7 @@
     var buttons = document.getElementById('buttons').getElementsByTagName('span');
     var index = 1;
     var timer;
-
+    //创建轮播动画
     function animate(offset){
         var newLeft = parseInt(wrap.style.left) + offset;
         wrap.style.left = newLeft + 'px';
@@ -19,7 +20,7 @@
             wrap.style.left = 0 + 'px';
         }
     }
-
+    //向左轮播点击事件
     leftBtn.onclick = function(){
         index -= 1;
         if(index < 1){
@@ -28,7 +29,7 @@
         buttonsShow();
         animate(1440);
     }
-
+    //向右轮播点击事件
     rightBtn.onclick = function(){
         index += 1;
         if(index > 3){
@@ -37,17 +38,17 @@
         buttonsShow();
         animate(-1440);
     }
-
+    //自动播放
     function autoWrap(){
         timer = setInterval(function(){
             leftBtn.onclick();
         },2000);
     }
-
+    //停止自动播放
     function stopWrap(){
         clearInterval(timer);
     }
-
+    //焦点事件
     function buttonsShow(){
         for(var i = 0; i < buttons.length; i++){
             if(buttons[i].className == "one"){
@@ -69,7 +70,7 @@
             }
         })(i);
     }
-
+    //调用方法
     div.onmouseover = stopWrap;
     div.onmouseout = autoWrap;
     autoWrap();
